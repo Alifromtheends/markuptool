@@ -1414,7 +1414,8 @@ async function startCheckout() {
   btn.textContent = 'Redirecting...';
   btn.disabled = true;
   try {
-    const res = await apiRequest('/api/checkout/session', 'POST', {});
+    const apiKey = localStorage.getItem('markup-api-key') || '';
+    const res = await apiRequest('/api/checkout/session', 'POST', { api_key: apiKey });
     if (!res.ok) throw new Error('Checkout failed');
     const data = await res.json();
     if (data.url) window.location.href = data.url;
