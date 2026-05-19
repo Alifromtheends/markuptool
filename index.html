@@ -336,6 +336,252 @@ main {
   color: #ffaa00;
 }
 
+/* Matrix Theme */
+.theme-matrix #preview {
+  background: #000;
+  color: #0f0;
+  font-family: var(--font-mono);
+  position: relative;
+  overflow: hidden;
+}
+.theme-matrix #preview::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+.theme-matrix #preview::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0,255,0,0.03) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+.theme-matrix #preview h1,
+.theme-matrix #preview h2,
+.theme-matrix #preview h3,
+.theme-matrix #preview h4 {
+  font-family: var(--font-mono);
+  color: #0f0;
+  text-shadow: 0 0 8px rgba(0,255,0,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.theme-matrix #preview h1 { border-bottom-color: #0f0; }
+.theme-matrix #preview p { color: #00cc00; }
+.theme-matrix #preview a { color: #39ff14; text-shadow: 0 0 4px rgba(57,255,20,0.3); }
+.theme-matrix #preview blockquote {
+  background: rgba(0,255,0,0.05);
+  border-left-color: #0f0;
+  color: #00e600;
+}
+.theme-matrix #preview code {
+  background: rgba(0,255,0,0.08);
+  color: #39ff14;
+  border-color: rgba(0,255,0,0.25);
+}
+.theme-matrix #preview pre {
+  background: rgba(0,255,0,0.04);
+  border-color: rgba(0,255,0,0.2);
+}
+.theme-matrix #preview pre code { color: #00ff41; }
+.theme-matrix #preview th { background: rgba(0,255,0,0.06); color: #0f0; }
+.theme-matrix #preview hr { border-color: rgba(0,255,0,0.2); }
+.theme-matrix #preview table th,
+.theme-matrix #preview table td { border-color: rgba(0,255,0,0.15); }
+.theme-matrix #preview tr:nth-child(even) { background: rgba(0,255,0,0.02); }
+
+/* Paper Theme */
+.theme-paper #preview {
+  background: #f5f0e8;
+  color: #2c1810;
+  font-family: 'Courier New', Courier, 'Courier Prime', monospace;
+}
+.theme-paper #preview::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 1;
+}
+.theme-paper #preview h1,
+.theme-paper #preview h2,
+.theme-paper #preview h3,
+.theme-paper #preview h4 {
+  font-family: 'Courier New', Courier, monospace;
+  color: #1a0f0a;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.theme-paper #preview h1 { border-bottom-color: #c4b5a0; }
+.theme-paper #preview p { color: #4a3525; line-height: 1.8; }
+.theme-paper #preview a { color: #8b4513; text-decoration: underline; text-decoration-color: #c4b5a0; }
+.theme-paper #preview blockquote {
+  background: #ebe5da;
+  border-left-color: #8b4513;
+  color: #3d2b1f;
+  font-style: italic;
+}
+.theme-paper #preview code {
+  background: #e8e0d4;
+  color: #5c3a21;
+  border-color: #d4c8b8;
+  font-family: 'Courier New', Courier, monospace;
+}
+.theme-paper #preview pre {
+  background: #ede6d8;
+  border-color: #c4b5a0;
+}
+.theme-paper #preview pre code { color: #2c1810; }
+.theme-paper #preview th { background: #ebe5da; color: #1a0f0a; }
+.theme-paper #preview hr { border-color: #c4b5a0; }
+.theme-paper #preview table th,
+.theme-paper #preview table td { border-color: #c4b5a0; }
+.theme-paper #preview tr:nth-child(even) { background: rgba(139,69,19,0.03); }
+
+/* Ocean Theme */
+.theme-ocean #preview {
+  background: linear-gradient(160deg, #0a1628 0%, #0d2137 40%, #0f2d4a 100%);
+  color: #c8e6f5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  min-height: 100%;
+}
+.theme-ocean #preview h1,
+.theme-ocean #preview h2,
+.theme-ocean #preview h3,
+.theme-ocean #preview h4 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #fff;
+  font-weight: 700;
+}
+.theme-ocean #preview h1 {
+  border-bottom-color: rgba(0,212,255,0.2);
+  text-shadow: 0 0 20px rgba(0,212,255,0.15);
+}
+.theme-ocean #preview p { color: #94c4dd; }
+.theme-ocean #preview a { color: #00d4ff; }
+.theme-ocean #preview blockquote {
+  background: rgba(255,255,255,0.04);
+  border-left-color: #00d4ff;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 0 6px 6px 0;
+}
+.theme-ocean #preview code {
+  background: rgba(0,212,255,0.08);
+  color: #00d4ff;
+  border-color: rgba(0,212,255,0.15);
+}
+.theme-ocean #preview pre {
+  background: rgba(0,0,0,0.2);
+  border-color: rgba(0,212,255,0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.theme-ocean #preview pre code { color: #c8e6f5; }
+.theme-ocean #preview th {
+  background: rgba(0,212,255,0.06);
+  color: #fff;
+}
+.theme-ocean #preview hr { border-color: rgba(0,212,255,0.1); }
+.theme-ocean #preview table th,
+.theme-ocean #preview table td { border-color: rgba(0,212,255,0.08); }
+.theme-ocean #preview tr:nth-child(even) { background: rgba(0,212,255,0.02); }
+.theme-ocean #preview img {
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* Brutalist Theme */
+.theme-brutalist #preview {
+  background: #fff;
+  color: #000;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+.theme-brutalist #preview h1,
+.theme-brutalist #preview h2,
+.theme-brutalist #preview h3,
+.theme-brutalist #preview h4 {
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #000;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+.theme-brutalist #preview h1 {
+  font-size: 2.6rem;
+  border-bottom: 4px solid #000;
+  padding-bottom: 0.6rem;
+}
+.theme-brutalist #preview h2 { font-size: 1.8rem; border-bottom: 2px solid #000; padding-bottom: 0.3rem; }
+.theme-brutalist #preview h3 { font-size: 1.3rem; }
+.theme-brutalist #preview p { color: #111; font-weight: 500; }
+.theme-brutalist #preview a {
+  color: #000;
+  background: #ff0000;
+  padding: 0 0.2rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.theme-brutalist #preview a:hover { background: #000; color: #fff; }
+.theme-brutalist #preview blockquote {
+  background: #fff;
+  border-left: 6px solid #ff0000;
+  color: #000;
+  font-weight: 600;
+}
+.theme-brutalist #preview code {
+  background: #000;
+  color: #fff;
+  border: 2px solid #000;
+  border-radius: 0;
+  font-family: system-ui, monospace;
+  font-weight: 700;
+}
+.theme-brutalist #preview pre {
+  background: #fff;
+  border: 3px solid #000;
+  border-radius: 0;
+}
+.theme-brutalist #preview pre code {
+  background: #000;
+  color: #fff;
+  display: block;
+  padding: 0.5rem;
+}
+.theme-brutalist #preview th {
+  background: #000;
+  color: #fff;
+}
+.theme-brutalist #preview hr {
+  border: none;
+  border-top: 4px solid #000;
+  margin: 2.5rem 0;
+}
+.theme-brutalist #preview table th,
+.theme-brutalist #preview table td {
+  border: 2px solid #000;
+  padding: 0.8rem 1rem;
+}
+.theme-brutalist #preview tr:nth-child(even) { background: #f0f0f0; }
+.theme-brutalist #preview img {
+  border: 3px solid #000;
+  border-radius: 0;
+  filter: grayscale(100%) contrast(120%);
+}
+.theme-brutalist #preview ul li::marker { color: #ff0000; }
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
@@ -404,6 +650,10 @@ main {
       <option value="theme-dark">Dark</option>
       <option value="theme-minimal">Minimal</option>
       <option value="theme-editorial">Editorial</option>
+      <option value="theme-matrix">Matrix</option>
+      <option value="theme-paper">Paper</option>
+      <option value="theme-ocean">Ocean</option>
+      <option value="theme-brutalist">Brutalist</option>
     </select>
     <button onclick="exportHTML()">Export HTML</button>
     <button class="primary" onclick="copyHTML()">Copy</button>
@@ -512,7 +762,7 @@ A **privacy-first** markdown editor that exports beautiful, single-file websites
 ## Features
 
 - **Live preview** as you type
-- **Three themes**: Dark, Minimal, Editorial
+- **Seven themes**: Dark, Minimal, Editorial, Matrix, Paper, Ocean, Brutalist
 - **Export** as standalone HTML
 - **Auto-save** to local storage
 - **Syntax highlighting** for code blocks
@@ -581,7 +831,7 @@ editor.addEventListener('keydown', (e) => {
 
 // Theme
 function changeTheme(theme) {
-  preview.classList.remove('theme-dark', 'theme-minimal', 'theme-editorial');
+  preview.classList.remove('theme-dark', 'theme-minimal', 'theme-editorial', 'theme-matrix', 'theme-paper', 'theme-ocean', 'theme-brutalist');
   preview.classList.add(theme);
   currentTheme = theme;
   localStorage.setItem('markup-theme', theme);
@@ -661,6 +911,57 @@ input[type="checkbox"] { accent-color: var(--accent); margin-right: 0.5rem; }
 .theme-editorial a { color: #ffaa00; }
 .theme-editorial blockquote { background: #141414; border-left-color: #ffaa00; }
 .theme-editorial code { background: #141414; color: #ffaa00; }
+
+/* Matrix theme */
+.theme-matrix body { background: #000; color: #0f0; font-family: 'SF Mono', Monaco, monospace; }
+.theme-matrix h1, .theme-matrix h2, .theme-matrix h3, .theme-matrix h4 { color: #0f0; text-shadow: 0 0 8px rgba(0,255,0,0.4); text-transform: uppercase; letter-spacing: 0.05em; }
+.theme-matrix p { color: #00cc00; }
+.theme-matrix a { color: #39ff14; }
+.theme-matrix blockquote { background: rgba(0,255,0,0.05); border-left-color: #0f0; }
+.theme-matrix code { background: rgba(0,255,0,0.08); color: #39ff14; border-color: rgba(0,255,0,0.25); }
+.theme-matrix pre { background: rgba(0,255,0,0.04); border-color: rgba(0,255,0,0.2); }
+.theme-matrix th { background: rgba(0,255,0,0.06); }
+.theme-matrix hr { border-color: rgba(0,255,0,0.2); }
+.theme-matrix th, .theme-matrix td { border-color: rgba(0,255,0,0.15); }
+
+/* Paper theme */
+.theme-paper body { background: #f5f0e8; color: #2c1810; font-family: 'Courier New', Courier, monospace; }
+.theme-paper h1, .theme-paper h2, .theme-paper h3, .theme-paper h4 { color: #1a0f0a; }
+.theme-paper p { color: #4a3525; }
+.theme-paper a { color: #8b4513; }
+.theme-paper blockquote { background: #ebe5da; border-left-color: #8b4513; }
+.theme-paper code { background: #e8e0d4; color: #5c3a21; border-color: #d4c8b8; }
+.theme-paper pre { background: #ede6d8; border-color: #c4b5a0; }
+.theme-paper th { background: #ebe5da; }
+.theme-paper hr { border-color: #c4b5a0; }
+.theme-paper th, .theme-paper td { border-color: #c4b5a0; }
+
+/* Ocean theme */
+.theme-ocean body { background: linear-gradient(160deg, #0a1628 0%, #0d2137 40%, #0f2d4a 100%); color: #c8e6f5; }
+.theme-ocean h1, .theme-ocean h2, .theme-ocean h3, .theme-ocean h4 { color: #fff; }
+.theme-ocean p { color: #94c4dd; }
+.theme-ocean a { color: #00d4ff; }
+.theme-ocean blockquote { background: rgba(255,255,255,0.04); border-left-color: #00d4ff; }
+.theme-ocean code { background: rgba(0,212,255,0.08); color: #00d4ff; border-color: rgba(0,212,255,0.15); }
+.theme-ocean pre { background: rgba(0,0,0,0.2); border-color: rgba(0,212,255,0.1); }
+.theme-ocean th { background: rgba(0,212,255,0.06); }
+.theme-ocean hr { border-color: rgba(0,212,255,0.1); }
+.theme-ocean th, .theme-ocean td { border-color: rgba(0,212,255,0.08); }
+
+/* Brutalist theme */
+.theme-brutalist body { background: #fff; color: #000; font-family: system-ui, sans-serif; }
+.theme-brutalist h1, .theme-brutalist h2, .theme-brutalist h3, .theme-brutalist h4 { color: #000; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; }
+.theme-brutalist h1 { font-size: 2.6rem; border-bottom: 4px solid #000; }
+.theme-brutalist h2 { font-size: 1.8rem; border-bottom: 2px solid #000; }
+.theme-brutalist p { color: #111; font-weight: 500; }
+.theme-brutalist a { color: #000; background: #ff0000; padding: 0 0.2rem; font-weight: 700; text-decoration: none; }
+.theme-brutalist blockquote { border-left: 6px solid #ff0000; }
+.theme-brutalist code { background: #000; color: #fff; border: 2px solid #000; border-radius: 0; font-weight: 700; }
+.theme-brutalist pre { background: #fff; border: 3px solid #000; border-radius: 0; }
+.theme-brutalist th { background: #000; color: #fff; }
+.theme-brutalist hr { border: none; border-top: 4px solid #000; }
+.theme-brutalist th, .theme-brutalist td { border: 2px solid #000; }
+.theme-brutalist tr:nth-child(even) { background: #f0f0f0; }
 </style>
 </head>
 <body class="${themeClass}">

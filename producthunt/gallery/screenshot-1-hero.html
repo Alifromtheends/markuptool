@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Markup — Screenshot 1: Hero</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'SF Mono', Monaco, Inconsolata, 'Fira Code', monospace;
+  background: #050505;
+  color: #e0e0e0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Window chrome */
+.window {
+  width: 1200px;
+  height: 750px;
+  margin: auto;
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.03);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  height: 52px;
+  background: #0a0a0a;
+  border-bottom: 1px solid #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #00ff88;
+}
+
+.brand-dot {
+  width: 8px; height: 8px;
+  background: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00ff88;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.actions select, .actions button {
+  font-family: inherit;
+  font-size: 0.75rem;
+  padding: 0.45rem 0.9rem;
+  background: #111;
+  border: 1px solid #1a1a1a;
+  color: #e0e0e0;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.actions button.primary {
+  background: #00ff88;
+  color: #000;
+  border-color: #00ff88;
+  font-weight: 600;
+}
+
+/* Main */
+main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.editor-pane, .preview-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.editor-pane {
+  border-right: 1px solid #1a1a1a;
+}
+
+.pane-header {
+  height: 36px;
+  background: #0a0a0a;
+  border-bottom: 1px solid #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  font-size: 0.7rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.editor-content {
+  flex: 1;
+  padding: 1.5rem;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #ccc;
+  overflow: hidden;
+  white-space: pre-wrap;
+}
+
+.preview-content {
+  flex: 1;
+  padding: 2rem 2.5rem;
+  overflow-y: auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.7;
+}
+
+/* Syntax highlighting simulation */
+.md-h1 { color: #e0e0e0; font-weight: 700; font-size: 1.4rem; }
+.md-h2 { color: #e0e0e0; font-weight: 700; font-size: 1.1rem; }
+.md-bold { color: #fff; }
+.md-code { color: #00ff88; }
+.md-link { color: #00ff88; }
+.md-bullet { color: #00ff88; }
+.md-quote { color: #888; }
+.md-checkbox { color: #00ff88; }
+.md-plain { color: #aaa; }
+.md-comment { color: #555; }
+
+/* Preview styles */
+.preview-content h1 {
+  font-family: 'SF Mono', monospace;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #e0e0e0;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.preview-content h2 {
+  font-family: 'SF Mono', monospace;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #e0e0e0;
+  margin: 1.5rem 0 0.8rem;
+}
+.preview-content p {
+  color: #888;
+  margin: 0.8rem 0;
+  font-size: 0.95rem;
+}
+.preview-content strong { color: #e0e0e0; }
+.preview-content a { color: #00ff88; text-decoration: none; }
+.preview-content ul {
+  color: #888;
+  padding-left: 1.5rem;
+  margin: 0.8rem 0;
+}
+.preview-content li { margin: 0.3rem 0; }
+.preview-content li::marker { color: #00ff88; }
+.preview-content blockquote {
+  border-left: 3px solid #00ff88;
+  margin: 1.2rem 0;
+  padding: 0.5rem 1.2rem;
+  background: #111;
+  color: #ccc;
+  font-style: italic;
+}
+.preview-content pre {
+  background: #0d0d0d;
+  border: 1px solid #1a1a1a;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-family: 'SF Mono', monospace;
+  font-size: 0.8rem;
+  color: #ccc;
+}
+.preview-content code {
+  font-family: 'SF Mono', monospace;
+  background: #0d0d0d;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  border: 1px solid #1a1a1a;
+  color: #00ff88;
+  font-size: 0.85em;
+}
+.preview-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+.preview-content th, .preview-content td {
+  border: 1px solid #1a1a1a;
+  padding: 0.5rem 1rem;
+  text-align: left;
+}
+.preview-content th {
+  background: #111;
+  font-family: 'SF Mono', monospace;
+  color: #e0e0e0;
+}
+.preview-content tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+
+/* Resizer */
+.resizer {
+  width: 6px;
+  background: #1a1a1a;
+  cursor: col-resize;
+  flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+
+<div class="window">
+  <header>
+    <div class="brand">
+      <div class="brand-dot"></div>
+      <span>MARKUP</span>
+    </div>
+    <div class="actions">
+      <select><option>Dark</option><option>Minimal</option><option>Editorial</option><option>Matrix</option><option>Paper</option><option>Ocean</option><option>Brutalist</option></select>
+      <button>Export HTML</button>
+      <button class="primary">Copy</button>
+    </div>
+  </header>
+  <main>
+    <div class="editor-pane">
+      <div class="pane-header">
+        <span>Markdown</span>
+        <span>142 words</span>
+      </div>
+      <div class="editor-content"><span class="md-h1"># Welcome to Markup</span>
+
+<span class="md-plain">A </span><span class="md-bold">**privacy-first**</span><span class="md-plain"> markdown editor</span>
+<span class="md-plain">that exports beautiful, single-file</span>
+<span class="md-plain">websites. No server. No tracking.</span>
+
+<span class="md-h2">## Features</span>
+
+<span class="md-bullet">- **Live preview** as you type</span>
+<span class="md-bullet">- **Seven themes**: Dark, Minimal,</span>
+<span class="md-plain">  Editorial, Matrix, Paper, Ocean,</span>
+<span class="md-plain">  Brutalist</span>
+<span class="md-bullet">- **Export** as standalone HTML</span>
+<span class="md-bullet">- **Auto-save** to local storage</span>
+<span class="md-bullet">- **Syntax highlighting**</span>
+
+<span class="md-h2">## Code</span>
+
+<span class="md-code">```javascript</span>
+<span class="md-code">const markup = {</span>
+<span class="md-code">  write: () => editor.focus(),</span>
+<span class="md-code">  export: () => downloadHTML()</span>
+<span class="md-code">};</span>
+<span class="md-code">```</span>
+
+<span class="md-h2">## Tasks</span>
+
+<span class="md-checkbox">- [x] Build editor</span>
+<span class="md-checkbox">- [x] Add themes</span>
+<span class="md-checkbox">- [ ] World domination</span>
+
+<span class="md-quote">> "The best code is the code</span>
+<span class="md-quote">> you don't write."</span></div>
+    </div>
+    <div class="resizer"></div>
+    <div class="preview-pane">
+      <div class="pane-header">
+        <span>Preview</span>
+        <span>Live</span>
+      </div>
+      <div class="preview-content">
+        <h1>Welcome to Markup</h1>
+        <p>A <strong>privacy-first</strong> markdown editor that exports beautiful, single-file websites. No server. No tracking. Just write and ship.</p>
+        <h2>Features</h2>
+        <ul>
+          <li><strong>Live preview</strong> as you type</li>
+          <li><strong>Seven themes</strong>: Dark, Minimal, Editorial, Matrix, Paper, Ocean, Brutalist</li>
+          <li><strong>Export</strong> as standalone HTML</li>
+          <li><strong>Auto-save</strong> to local storage</li>
+          <li><strong>Syntax highlighting</strong></li>
+        </ul>
+        <h2>Code</h2>
+        <pre>const markup = {
+  write: () => editor.focus(),
+  export: () => downloadHTML()
+};</pre>
+        <h2>Tasks</h2>
+        <ul>
+          <li>Build editor</li>
+          <li>Add themes</li>
+          <li>World domination</li>
+        </ul>
+        <blockquote>"The best code is the code you don't write."</blockquote>
+      </div>
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

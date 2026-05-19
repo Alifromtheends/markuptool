@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Markup — Screenshot 4: Mobile</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'SF Mono', Monaco, Inconsolata, 'Fira Code', monospace;
+  background: #050505;
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.scene {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* Phone mockup */
+.phone {
+  width: 320px;
+  height: 680px;
+  background: #0a0a0a;
+  border: 2px solid #222;
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.03);
+}
+
+.phone::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 28px;
+  background: #0a0a0a;
+  border-radius: 0 0 16px 16px;
+  z-index: 5;
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Mobile header */
+.m-header {
+  padding: 3rem 1rem 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #1a1a1a;
+  flex-shrink: 0;
+}
+
+.m-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #00ff88;
+}
+
+.m-brand-dot {
+  width: 6px; height: 6px;
+  background: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #00ff88;
+}
+
+.m-actions {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.m-actions button {
+  font-family: inherit;
+  font-size: 0.6rem;
+  padding: 0.3rem 0.5rem;
+  background: #111;
+  border: 1px solid #1a1a1a;
+  color: #e0e0e0;
+  border-radius: 4px;
+}
+.m-actions button.active {
+  background: #00ff88;
+  color: #000;
+  border-color: #00ff88;
+  font-weight: 600;
+}
+
+/* Mobile content */
+.m-content {
+  flex: 1;
+  padding: 1.2rem;
+  overflow-y: auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.7;
+}
+
+.m-content h1 {
+  font-family: 'SF Mono', monospace;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #e0e0e0;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+.m-content h2 {
+  font-family: 'SF Mono', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e0e0e0;
+  margin: 1.2rem 0 0.6rem;
+}
+.m-content p {
+  color: #888;
+  font-size: 0.9rem;
+  margin: 0.6rem 0;
+}
+.m-content strong { color: #e0e0e0; }
+.m-content a { color: #00ff88; text-decoration: none; }
+.m-content ul {
+  color: #888;
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+}
+.m-content li { margin: 0.25rem 0; }
+.m-content li::marker { color: #00ff88; }
+.m-content blockquote {
+  border-left: 3px solid #00ff88;
+  margin: 1rem 0;
+  padding: 0.4rem 1rem;
+  background: #111;
+  color: #ccc;
+  font-style: italic;
+  font-size: 0.85rem;
+}
+.m-content pre {
+  background: #0d0d0d;
+  border: 1px solid #1a1a1a;
+  border-radius: 6px;
+  padding: 0.8rem;
+  margin: 0.8rem 0;
+  font-family: 'SF Mono', monospace;
+  font-size: 0.75rem;
+  color: #ccc;
+  overflow-x: auto;
+}
+
+/* Info panel */
+.info {
+  max-width: 300px;
+}
+.info h2 {
+  font-size: 1.2rem;
+  color: #00ff88;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+.info p {
+  color: #888;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+.info .specs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.info .spec {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  color: #aaa;
+}
+.info .spec-dot {
+  width: 6px; height: 6px;
+  background: #00ff88;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+
+<div class="scene">
+  <div class="phone">
+    <div class="phone-screen">
+      <div class="m-header">
+        <div class="m-brand">
+          <div class="m-brand-dot"></div>
+          <span>MARKUP</span>
+        </div>
+        <div class="m-actions">
+          <button>Edit</button>
+          <button class="active">Preview</button>
+        </div>
+      </div>
+      <div class="m-content">
+        <h1>Welcome to Markup</h1>
+        <p>A <strong>privacy-first</strong> markdown editor that exports beautiful, single-file websites.</p>
+        <h2>Features</h2>
+        <ul>
+          <li><strong>Live preview</strong> as you type</li>
+          <li><strong>Seven themes</strong> to choose from</li>
+          <li><strong>Export</strong> as standalone HTML</li>
+          <li><strong>Auto-save</strong> to local storage</li>
+        </ul>
+        <h2>Code</h2>
+        <pre>const markup = {
+  write: () => true,
+  export: () => download()
+};</pre>
+        <blockquote>"The best code is the code you don't write."</blockquote>
+        <h2>Pricing</h2>
+        <ul>
+          <li>Free — Everything</li>
+          <li>Pro — Also everything</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="info">
+    <h2>Write anywhere.<br>Export everywhere.</h2>
+    <p>Markup is fully responsive. Toggle between editor and preview with a single tap. The entire app fits in one HTML file that works offline.</p>
+    <div class="specs">
+      <div class="spec"><div class="spec-dot"></div>Touch-friendly interface</div>
+      <div class="spec"><div class="spec-dot"></div>Works offline instantly</div>
+      <div class="spec"><div class="spec-dot"></div>Zero server required</div>
+      <div class="spec"><div class="spec-dot"></div>Auto-saves to device</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

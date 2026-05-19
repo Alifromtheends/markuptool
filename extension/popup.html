@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+:root {
+  --bg: #050505;
+  --surface: #0a0a0a;
+  --surface-2: #111;
+  --border: #1a1a1a;
+  --border-hover: #333;
+  --text: #e0e0e0;
+  --text-dim: #888;
+  --accent: #00ff88;
+  --accent-dim: #00cc6a;
+  --danger: #ff3366;
+  --font-mono: 'SF Mono', Monaco, Inconsolata, 'Fira Code', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 320px;
+  font-family: var(--font-mono);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.brand-dot {
+  width: 7px; height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--accent);
+}
+.brand-text {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+section {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.section-title {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin-bottom: 0.6rem;
+}
+button {
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.5rem 0.8rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+button:last-child { margin-bottom: 0; }
+button:hover { border-color: var(--border-hover); background: var(--surface); }
+button.primary {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+  font-weight: 600;
+  justify-content: center;
+}
+button.primary:hover { box-shadow: 0 0 12px rgba(0,255,136,0.15); }
+button .icon { width: 14px; height: 14px; flex-shrink: 0; }
+button.primary .icon { fill: var(--bg); }
+button:not(.primary) .icon { fill: var(--text-dim); }
+
+.recent-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.6rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  margin-bottom: 0.35rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.recent-item:hover { border-color: var(--border-hover); }
+.recent-item .title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+.recent-item .date {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+.recent-empty {
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  font-style: italic;
+  padding: 0.3rem 0;
+}
+
+textarea {
+  width: 100%;
+  min-height: 80px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.6rem;
+  resize: vertical;
+  outline: none;
+  line-height: 1.5;
+}
+textarea:focus { border-color: var(--accent); }
+.quick-actions {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+.quick-actions button {
+  flex: 1;
+  justify-content: center;
+  margin-bottom: 0;
+}
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: var(--danger);
+  padding: 0.1rem 0.3rem;
+  font-size: 0.7rem;
+  width: auto;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.recent-item:hover .delete-btn { opacity: 1; }
+.delete-btn:hover { background: rgba(255,51,102,0.1); }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand-dot"></div>
+  <span class="brand-text">MARKUP</span>
+</header>
+
+<section>
+  <div class="section-title">Actions</div>
+  <button class="primary" id="btn-new">
+    <svg class="icon" viewBox="0 0 16 16"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+    New Document
+  </button>
+  <button id="btn-sidepanel">
+    <svg class="icon" viewBox="0 0 16 16"><rect x="1" y="2" width="14" height="12" rx="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/><line x1="10" y1="2" x2="10" y2="14" stroke="currentColor" stroke-width="1.2"/></svg>
+    Open Side Panel
+  </button>
+</section>
+
+<section>
+  <div class="section-title">Recent Quick Notes</div>
+  <div id="recent-list">
+    <div class="recent-empty">No quick notes yet</div>
+  </div>
+</section>
+
+<section>
+  <div class="section-title">Quick Note</div>
+  <textarea id="quick-note" placeholder="Jot something down..."></textarea>
+  <div class="quick-actions">
+    <button class="primary" id="btn-save">Save</button>
+    <button id="btn-clear">Clear</button>
+  </div>
+</section>
+
+<script src="popup.js"></script>
+</body>
+</html>
