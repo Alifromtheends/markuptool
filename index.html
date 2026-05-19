@@ -1492,6 +1492,16 @@ function showPane(pane) {
   }
 }
 
+// Handle Stripe checkout redirect
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('checkout') === 'success') {
+  showToast('🎉 Welcome to Pro! Your subscription is active.');
+  history.replaceState(null, '', window.location.pathname);
+} else if (urlParams.get('checkout') === 'cancel') {
+  showToast('Upgrade cancelled. You can upgrade anytime.');
+  history.replaceState(null, '', window.location.pathname);
+}
+
 // Init
 getApiKey();
 checkBackend();
