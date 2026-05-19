@@ -1311,7 +1311,8 @@ async function saveToCloud() {
     if (!res.ok) throw new Error('Save failed');
     const data = await res.json();
     currentSlug = data.slug;
-    showShareModal(data.url);
+    const shareUrl = `${window.location.origin}${window.location.pathname}?doc=${data.slug}`;
+    showShareModal(shareUrl);
     showToast('Saved to cloud');
   } catch (e) {
     showToast('Save failed — working offline');
@@ -1340,8 +1341,9 @@ async function cloneCurrentDoc() {
     if (!res.ok) throw new Error('Clone failed');
     const data = await res.json();
     currentSlug = data.slug;
+    const shareUrl = `${window.location.origin}${window.location.pathname}?doc=${data.slug}`;
     closeModal('shareModal');
-    showShareModal(data.url);
+    showShareModal(shareUrl);
     showToast('Document cloned');
   } catch (e) {
     showToast('Clone failed');
@@ -1500,6 +1502,10 @@ if (urlParams.get('checkout') === 'success') {
 } else if (urlParams.get('checkout') === 'cancel') {
   showToast('Upgrade cancelled. You can upgrade anytime.');
   history.replaceState(null, '', window.location.pathname);
+} else if (urlParams.get('doc')) {
+  const docSlug = urlParams.get('doc');
+  history.replaceState(null, '', window.location.pathname);
+  loadDocument(docSlug);
 }
 
 // Init
