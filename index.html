@@ -1302,7 +1302,7 @@ async function saveToCloud() {
       content: editor.value,
       theme: currentTheme
     });
-    if (res.status === 409) {
+    if (res.status === 409 || res.status === 403) {
       btn.textContent = originalText;
       btn.disabled = false;
       openModal('upgradeModal');
