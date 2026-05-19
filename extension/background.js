@@ -28,9 +28,11 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   }
 });
 
-chrome.action.onClicked.addListener((tab) => {
-  // Clicking the icon opens the side panel (fallback when popup isn't shown)
-  openSidePanel(tab.windowId);
+// Keyboard shortcut: open side panel
+chrome.commands.onCommand.addListener((command, tab) => {
+  if (command === 'open-side-panel') {
+    openSidePanel(tab?.windowId);
+  }
 });
 
 // Handle messages from popup, content script, and sidepanel

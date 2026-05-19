@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promo Tile 920x680</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 920px;
+  height: 680px;
+  background: #050505;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0,255,136,0.08) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.content {
+  text-align: center;
+  z-index: 1;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+.dot {
+  width: 14px; height: 14px;
+  background: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 24px rgba(0,255,136,0.4);
+}
+.brand-text {
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #00ff88;
+  letter-spacing: -0.02em;
+}
+.tagline {
+  font-size: 1.15rem;
+  color: #888;
+  margin-bottom: 2rem;
+}
+.editor-mockup {
+  width: 520px;
+  height: 280px;
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  border-radius: 6px;
+  display: flex;
+  overflow: hidden;
+}
+.editor-left, .editor-right {
+  flex: 1;
+  padding: 1rem;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+.editor-left {
+  border-right: 1px solid #1a1a1a;
+  color: #e0e0e0;
+  white-space: pre-wrap;
+}
+.editor-right {
+  color: #888;
+}
+.editor-right h2 {
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+.editor-right ul {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0;
+}
+.editor-right code {
+  background: #0d0d0d;
+  border: 1px solid #1a1a1a;
+  color: #00ff88;
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+}
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="glow"></div>
+<div class="content">
+  <div class="brand">
+    <div class="dot"></div>
+    <span class="brand-text">MARKUP</span>
+  </div>
+  <p class="tagline">Write markdown. Preview live. Export HTML.</p>
+  <div class="editor-mockup">
+    <div class="editor-left"># Hello World
+
+- Live preview
+- **Bold** text
+- `code` blocks</div>
+    <div class="editor-right">
+      <h2>Hello World</h2>
+      <ul>
+        <li>Live preview</li>
+        <li><strong style="color:#e0e0e0">Bold</strong> text</li>
+        <li><code>code</code> blocks</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

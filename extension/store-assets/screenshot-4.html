@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Screenshot 4 — GitHub Integration</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1280px;
+  height: 800px;
+  background: #0d1117;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3rem;
+}
+.github-mockup {
+  width: 960px;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+.repo-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: #58a6ff;
+  font-size: 1.1rem;
+}
+.readme-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.readme-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.readme-title-row h2 {
+  font-size: 1.1rem;
+  color: #c9d1d9;
+  font-weight: 600;
+}
+.markup-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  background: #0a0a0a;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #00ff88;
+  font-family: SFMono-Regular, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 8px;
+}
+.markup-btn:hover {
+  border-color: #00ff88;
+}
+.readme-body {
+  color: #c9d1d9;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+.readme-body h1 {
+  font-size: 1.8rem;
+  color: #e6edf3;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.readme-body p {
+  margin: 0.8rem 0;
+}
+.readme-body code {
+  background: #161b22;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: SFMono-Regular, Consolas, monospace;
+  font-size: 0.85em;
+}
+.readme-body pre {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+.annotation {
+  position: absolute;
+  top: 180px;
+  left: 720px;
+  background: #00ff88;
+  color: #050505;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'SF Mono', Monaco, monospace;
+  box-shadow: 0 4px 20px rgba(0,255,136,0.3);
+}
+.annotation::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -8px;
+  transform: translateY(-50%);
+  border: 8px solid transparent;
+  border-right-color: #00ff88;
+}
+</style>
+</head>
+<body>
+<div class="github-mockup">
+  <div class="repo-header">
+    <span>user / awesome-project</span>
+  </div>
+  <div class="readme-header">
+    <div class="readme-title-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="#8b949e"><path d="M0 1.75A.75.75 0 01.75 1h4.253c.464 0 .91.184 1.238.513l.814.814A2.75 2.75 0 008.586 4h4.964A1.75 1.75 0 0115.25 5.75v7.5A1.75 1.75 0 0113.5 15H2.75A1.75 1.75 0 011 13.25V1.75z"/></svg>
+      <h2>README.md</h2>
+      <a class="markup-btn" href="#">
+        <svg width="14" height="14" viewBox="0 0 16 16" style="margin-right:4px"><rect width="16" height="16" rx="4" fill="#0a0a0a"/><text x="8" y="12" font-family="monospace" font-size="10" font-weight="bold" fill="#00ff88" text-anchor="middle">M</text></svg>
+        Edit in Markup
+      </a>
+    </div>
+  </div>
+  <div class="readme-body">
+    <h1>Awesome Project</h1>
+    <p>A <strong>privacy-first</strong> tool for developers.</p>
+    <pre><code>npm install awesome-project</code></pre>
+    <p>Features include live preview, export, and more.</p>
+  </div>
+</div>
+<div class="annotation">One-click edit on every README</div>
+</body>
+</html>

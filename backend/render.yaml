@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: markuptool-backend
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    branch: main
+    rootDir: backend
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: FRONTEND_URL
+        value: https://alifromtheends.github.io
+      - key: DATABASE_URL
+        value: sqlite+aiosqlite:///data/markup.db
+      - key: API_KEY_HEADER
+        value: X-API-Key
+      # Stripe secrets — set these manually in Render dashboard after deploy
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: STRIPE_PRICE_ID
+        sync: false
+    disk:
+      name: markup-data
+      mountPath: /data
+      sizeGB: 1

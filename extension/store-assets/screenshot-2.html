@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Screenshot 2 — Side Panel</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1280px;
+  height: 800px;
+  background: #0f0f0f;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+}
+.browser-mockup {
+  width: 900px;
+  height: 100%;
+  background: #050505;
+  border-right: 1px solid #1a1a1a;
+  display: flex;
+  flex-direction: column;
+}
+.browser-bar {
+  height: 40px;
+  background: #0a0a0a;
+  border-bottom: 1px solid #1a1a1a;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  gap: 0.5rem;
+}
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot.r { background: #ff5f56; }
+.dot.y { background: #ffbd2e; }
+.dot.g { background: #27c93f; }
+.url-bar {
+  flex: 1;
+  background: #111;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  height: 24px;
+  margin-left: 0.5rem;
+}
+.page-content {
+  flex: 1;
+  padding: 2rem;
+  color: #888;
+  font-size: 0.9rem;
+}
+.sidepanel {
+  width: 380px;
+  height: 100%;
+  background: #050505;
+  display: flex;
+  flex-direction: column;
+}
+.sp-header {
+  height: 44px;
+  background: #0a0a0a;
+  border-bottom: 1px solid #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.8rem;
+}
+.sp-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #00ff88;
+}
+.sp-dot {
+  width: 7px; height: 7px;
+  background: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00ff88;
+}
+.sp-actions {
+  display: flex;
+  gap: 0.35rem;
+}
+.sp-actions button, .sp-actions select {
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.7rem;
+  padding: 0.35rem 0.6rem;
+  background: #111;
+  border: 1px solid #1a1a1a;
+  border-radius: 3px;
+  color: #e0e0e0;
+}
+.sp-actions button.primary {
+  background: #00ff88;
+  color: #050505;
+  border-color: #00ff88;
+  font-weight: 600;
+}
+.sp-editor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #1a1a1a;
+}
+.sp-pane-header {
+  height: 30px;
+  background: #0a0a0a;
+  border-bottom: 1px solid #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.8rem;
+  font-size: 0.65rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: 'SF Mono', Monaco, monospace;
+}
+.sp-textarea {
+  flex: 1;
+  padding: 0.8rem;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+  white-space: pre-wrap;
+}
+.sp-preview {
+  flex: 1;
+  padding: 0.8rem;
+  overflow-y: auto;
+  color: #888;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.sp-preview h3 {
+  font-family: 'SF Mono', Monaco, monospace;
+  color: #e0e0e0;
+  margin-bottom: 0.5rem;
+}
+.sp-preview ul {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0;
+}
+</style>
+</head>
+<body>
+<div class="browser-mockup">
+  <div class="browser-bar">
+    <div class="dot r"></div>
+    <div class="dot y"></div>
+    <div class="dot g"></div>
+    <div class="url-bar"></div>
+  </div>
+  <div class="page-content">
+    <h2 style="color:#e0e0e0;margin-bottom:1rem;">GitHub Repository</h2>
+    <p>Viewing source code... The Markup side panel is open on the right.</p>
+  </div>
+</div>
+<div class="sidepanel">
+  <div class="sp-header">
+    <div class="sp-brand"><div class="sp-dot"></div><span>MARKUP</span></div>
+    <div class="sp-actions">
+      <select><option>Dark</option></select>
+      <button>Export</button>
+      <button class="primary">Copy</button>
+    </div>
+  </div>
+  <div class="sp-editor">
+    <div class="sp-pane-header"><span>Markdown</span><span>12 words</span></div>
+    <div class="sp-textarea"># Side Panel
+
+Edit markdown while browsing.
+
+- Quick access
+- Live preview
+- Zero distractions</div>
+  </div>
+  <div class="sp-preview">
+    <div class="sp-pane-header"><span>Preview</span><span>Live</span></div>
+    <h3>Side Panel</h3>
+    <p>Edit markdown while browsing.</p>
+    <ul>
+      <li>Quick access</li>
+      <li>Live preview</li>
+      <li>Zero distractions</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

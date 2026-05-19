@@ -165,6 +165,8 @@
   }
 
   // ===== Textarea floating icon =====
+  const markupButtons = new WeakMap();
+
   function injectTextareaIcons() {
     const textareas = document.querySelectorAll('textarea:not([data-markup-watched])');
     textareas.forEach(ta => {
@@ -220,7 +222,16 @@
       window.addEventListener('resize', positionBtn);
 
       document.body.appendChild(btn);
+      markupButtons.set(ta, btn);
       positionBtn();
+    });
+
+    // Cleanup buttons for removed textareas
+    markupButtons.forEach((btn, ta) => {
+      if (!document.contains(ta)) {
+        btn.remove();
+        markupButtons.delete(ta);
+      }
     });
   }
 
@@ -253,9 +264,18 @@
   }
 
   init();
+
+  // Watch for DOM changes (SPAs like GitHub)
   const observer = new MutationObserver(() => {
     injectTextareaIcons();
     injectGitHubButton();
   });
-  observer.observe(document.body, { childList: true, subtree: true });
+
+  if (document.body) {
+    observer.observe(document.body, { childList: true, subtree: true });
+  } else {
+    document.addEventListener('DOMContentLoaded', () => {
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+  }
 })();

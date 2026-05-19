@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Screenshot 1 — Full Editor</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1280px;
+  height: 800px;
+  background: #050505;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+header {
+  height: 52px;
+  background: #0a0a0a;
+  border-bottom: 1px solid #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #00ff88;
+  font-family: 'SF Mono', Monaco, monospace;
+}
+.brand-dot {
+  width: 8px; height: 8px;
+  background: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00ff88;
+}
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+.actions button, .actions select {
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.75rem;
+  padding: 0.45rem 0.9rem;
+  background: #111;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  color: #e0e0e0;
+}
+.actions button.primary {
+  background: #00ff88;
+  color: #050505;
+  border-color: #00ff88;
+  font-weight: 600;
+}
+main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+.editor-pane {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #1a1a1a;
+}
+.pane-header {
+  height: 36px;
+  background: #0a0a0a;
+  border-bottom: 1px solid #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  font-size: 0.7rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: 'SF Mono', Monaco, monospace;
+}
+.editor-content {
+  flex: 1;
+  padding: 1.5rem;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #e0e0e0;
+  white-space: pre-wrap;
+}
+.editor-content .c1 { color: #888; }
+.editor-content .c2 { color: #e0e0e0; }
+.editor-content .c3 { color: #00ff88; }
+.editor-content .c4 { color: #ffaa00; }
+.preview-pane {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 2.5rem;
+  overflow-y: auto;
+}
+.preview-pane h1 {
+  font-size: 2rem;
+  font-family: 'SF Mono', Monaco, monospace;
+  color: #e0e0e0;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.preview-pane h2 {
+  font-size: 1.5rem;
+  font-family: 'SF Mono', Monaco, monospace;
+  color: #e0e0e0;
+  margin: 2rem 0 1rem;
+}
+.preview-pane p {
+  color: #888;
+  margin: 1rem 0;
+  line-height: 1.7;
+}
+.preview-pane ul {
+  color: #888;
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  line-height: 1.7;
+}
+.preview-pane li {
+  margin: 0.3rem 0;
+}
+.preview-pane code {
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.85em;
+  background: #0d0d0d;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  border: 1px solid #1a1a1a;
+  color: #00ff88;
+}
+.preview-pane pre {
+  background: #0d0d0d;
+  border: 1px solid #1a1a1a;
+  border-radius: 6px;
+  padding: 1.2rem;
+  margin: 1.5rem 0;
+}
+.preview-pane pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #e0e0e0;
+  font-size: 0.8rem;
+}
+.preview-pane blockquote {
+  border-left: 3px solid #00ff88;
+  margin: 1.5rem 0;
+  padding: 0.5rem 1.5rem;
+  background: #0a0a0a;
+  color: #e0e0e0;
+}
+.preview-pane table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+  color: #888;
+}
+.preview-pane th, .preview-pane td {
+  border: 1px solid #1a1a1a;
+  padding: 0.6rem 1rem;
+  text-align: left;
+}
+.preview-pane th {
+  background: #0a0a0a;
+  font-family: 'SF Mono', Monaco, monospace;
+  color: #e0e0e0;
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="brand-dot"></div><span>MARKUP</span></div>
+  <div class="actions">
+    <select><option>Dark</option><option>Minimal</option><option>Editorial</option></select>
+    <button>Export HTML</button>
+    <button class="primary">Copy</button>
+  </div>
+</header>
+<main>
+  <div class="editor-pane">
+    <div class="pane-header"><span>Markdown</span><span>42 words</span></div>
+    <div class="editor-content"><span class="c1"># Welcome to Markup</span>
+
+<span class="c2">A </span><span class="c3">**privacy-first**</span><span class="c2"> markdown editor.</span>
+
+<span class="c1">## Features</span>
+
+<span class="c2">- </span><span class="c3">**Live preview**</span><span class="c2"> as you type</span>
+<span class="c2">- Three themes: Dark, Minimal, Editorial</span>
+<span class="c2">- </span><span class="c3">**Export**</span><span class="c2"> as standalone HTML</span>
+<span class="c2">- Auto-save to local storage</span>
+
+<span class="c1">```javascript</span>
+<span class="c4">const</span><span class="c2"> markup = {</span>
+<span class="c2">  write: () => editor.focus()</span>
+<span class="c2">};</span>
+<span class="c1">```</span>
+
+<span class="c2">> "The best code is the code you don't write."</span></div>
+  </div>
+  <div class="preview-pane">
+    <h1>Welcome to Markup</h1>
+    <p>A <strong style="color:#e0e0e0">privacy-first</strong> markdown editor.</p>
+    <h2>Features</h2>
+    <ul>
+      <li><strong style="color:#e0e0e0">Live preview</strong> as you type</li>
+      <li>Three themes: Dark, Minimal, Editorial</li>
+      <li><strong style="color:#e0e0e0">Export</strong> as standalone HTML</li>
+      <li>Auto-save to local storage</li>
+    </ul>
+    <pre><code><span style="color:#ffaa00">const</span> markup = {
+  write: () => editor.focus()
+};</code></pre>
+    <blockquote>"The best code is the code you don't write."</blockquote>
+  </div>
+</main>
+</body>
+</html>

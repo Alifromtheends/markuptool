@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promo Tile 1400x560</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1400px;
+  height: 560px;
+  background: #050505;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.content {
+  text-align: center;
+  z-index: 1;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.dot {
+  width: 16px; height: 16px;
+  background: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(0,255,136,0.4);
+}
+.brand-text {
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #00ff88;
+  letter-spacing: -0.02em;
+}
+.tagline {
+  font-size: 1.4rem;
+  color: #888;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.9rem;
+  color: #555;
+}
+.features span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.features span::before {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: #00ff88;
+  border-radius: 50%;
+}
+.glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0,255,136,0.08) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="glow"></div>
+<div class="content">
+  <div class="brand">
+    <div class="dot"></div>
+    <span class="brand-text">MARKUP</span>
+  </div>
+  <p class="tagline">Privacy-first markdown editor for Chrome</p>
+  <div class="features">
+    <span>Live Preview</span>
+    <span>HTML Export</span>
+    <span>Zero Dependencies</span>
+  </div>
+</div>
+</body>
+</html>

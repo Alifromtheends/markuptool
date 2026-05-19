@@ -22,16 +22,32 @@
       "128": "icons/icon128.png"
     }
   },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+M",
+        "mac": "Command+Shift+M"
+      },
+      "description": "Open Markup popup"
+    },
+    "open-side-panel": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+U",
+        "mac": "Command+Shift+U"
+      },
+      "description": "Open Markup side panel"
+    }
+  },
   "side_panel": {
     "default_path": "sidepanel.html"
   },
+  "options_page": "options.html",
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
       "matches": [
-        "https://github.com/*",
         "<all_urls>"
       ],
       "js": ["content.js"],
@@ -46,7 +62,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["sidepanel.html"],
+      "resources": ["sidepanel.html", "options.html"],
       "matches": ["<all_urls>"]
     }
   ]

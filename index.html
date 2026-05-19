@@ -588,6 +588,141 @@ main {
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
 
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+.modal-overlay.show { display: flex; }
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  min-width: 320px;
+  max-width: 480px;
+  width: 90%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+.modal-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-header h3 {
+  font-size: 0.85rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  padding: 0.2rem;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.modal-close:hover { color: var(--text); }
+.modal-body {
+  padding: 1.25rem;
+  overflow-y: auto;
+  font-size: 0.8rem;
+}
+.modal-footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+/* Doc list */
+.doc-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.doc-item {
+  padding: 0.75rem 1rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.doc-item:hover { border-color: var(--accent); }
+.doc-item-title { font-size: 0.8rem; color: var(--text); }
+.doc-item-meta { font-size: 0.65rem; color: var(--text-dim); margin-top: 0.15rem; }
+.doc-item-actions { display: flex; gap: 0.3rem; }
+.doc-item-actions button {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.65rem;
+}
+
+/* Share modal */
+.share-url {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+}
+.share-url input {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  border-radius: 3px;
+  outline: none;
+}
+.share-qr {
+  text-align: center;
+  margin: 1rem 0;
+}
+.share-qr img {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.5rem;
+  background: #fff;
+}
+
+/* Offline indicator */
+.offline-indicator {
+  display: none;
+  font-size: 0.65rem;
+  color: var(--warning);
+  border: 1px solid var(--warning);
+  padding: 0.2rem 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.offline-indicator.show { display: inline-block; }
+
+/* Pro badge */
+.pro-badge {
+  display: none;
+  font-size: 0.65rem;
+  color: var(--bg);
+  background: var(--accent);
+  padding: 0.15rem 0.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.pro-badge.show { display: inline-block; }
+
 /* Toast */
 .toast {
   position: fixed;
@@ -656,7 +791,11 @@ main {
       <option value="theme-brutalist">Brutalist</option>
     </select>
     <button onclick="exportHTML()">Export HTML</button>
+    <button onclick="saveToCloud()" id="btn-save">☁️ Save</button>
+    <button onclick="openDocsModal()" id="btn-open">📂 Open</button>
     <button class="primary" onclick="copyHTML()">Copy</button>
+    <span class="offline-indicator" id="offlineIndicator">Offline</span>
+    <span class="pro-badge" id="proBadge">Pro</span>
   </div>
 </header>
 
@@ -677,6 +816,57 @@ main {
     <div id="preview"></div>
   </div>
 </main>
+
+<!-- Share Modal -->
+<div class="modal-overlay" id="shareModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Document Saved</h3>
+      <button class="modal-close" onclick="closeModal('shareModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="share-url">
+        <input type="text" id="shareUrl" readonly>
+        <button onclick="copyShareUrl()">Copy</button>
+      </div>
+      <div class="share-qr" id="shareQR"></div>
+      <button class="primary" onclick="cloneCurrentDoc()" id="cloneBtn" style="width: 100%;">Clone this doc</button>
+    </div>
+  </div>
+</div>
+
+<!-- Docs Modal -->
+<div class="modal-overlay" id="docsModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>My Documents</h3>
+      <button class="modal-close" onclick="closeModal('docsModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="doc-list" id="docList"></div>
+    </div>
+    <div class="modal-footer">
+      <button onclick="closeModal('docsModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Upgrade Modal -->
+<div class="modal-overlay" id="upgradeModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Upgrade to Pro</h3>
+      <button class="modal-close" onclick="closeModal('upgradeModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="margin-bottom: 1rem; color: var(--text-dim); line-height: 1.6;">
+        You've reached the free tier limit of <strong style="color: var(--text);">5 documents</strong>.<br>
+        Upgrade to Pro for <strong style="color: var(--text);">unlimited documents</strong>.
+      </p>
+      <button class="primary" onclick="startCheckout()" id="checkoutBtn" style="width: 100%;">Upgrade to Pro — $5/mo</button>
+    </div>
+  </div>
+</div>
 
 <div class="toast" id="toast"></div>
 
@@ -753,6 +943,41 @@ let currentTheme = 'theme-dark';
 const editor = document.getElementById('editor');
 const preview = document.getElementById('preview');
 const wordCount = document.getElementById('wordCount');
+
+// API
+const API_BASE = 'http://localhost:8000';
+let isOffline = false;
+let currentSlug = null;
+
+function getApiKey() {
+  let key = localStorage.getItem('markup-api-key');
+  if (!key) {
+    key = crypto.randomUUID();
+    localStorage.setItem('markup-api-key', key);
+  }
+  return key;
+}
+
+async function apiRequest(path, method = 'GET', body = null) {
+  const url = API_BASE + path;
+  const options = {
+    method,
+    headers: {
+      'X-API-Key': getApiKey(),
+      'Content-Type': 'application/json'
+    }
+  };
+  if (body) options.body = JSON.stringify(body);
+  try {
+    const res = await fetch(url, options);
+    if (isOffline) { isOffline = false; updateOfflineIndicator(); }
+    return res;
+  } catch (err) {
+    isOffline = true;
+    updateOfflineIndicator();
+    throw err;
+  }
+}
 
 // Default content
 const defaultContent = `# Welcome to Markup
@@ -1034,6 +1259,194 @@ function showToast(msg) {
   setTimeout(() => toast.classList.remove('show'), 2500);
 }
 
+// Backend connectivity
+async function checkBackend() {
+  try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 3000);
+    const res = await fetch(API_BASE + '/api/me', {
+      headers: { 'X-API-Key': getApiKey() },
+      signal: controller.signal
+    });
+    clearTimeout(timer);
+    isOffline = !res.ok;
+    updateOfflineIndicator();
+    if (res.ok) {
+      const data = await res.json();
+      if (data.subscription_status === 'active') {
+        document.getElementById('proBadge').classList.add('show');
+      }
+    }
+  } catch (e) {
+    isOffline = true;
+    updateOfflineIndicator();
+  }
+}
+
+function updateOfflineIndicator() {
+  const el = document.getElementById('offlineIndicator');
+  if (isOffline) el.classList.add('show');
+  else el.classList.remove('show');
+}
+
+async function saveToCloud() {
+  if (isOffline) { showToast('Offline mode — saved locally'); return; }
+  const btn = document.getElementById('btn-save');
+  const originalText = btn.textContent;
+  btn.textContent = '⏳ Saving...';
+  btn.disabled = true;
+  const title = (editor.value.match(/^# (.*$)/m) || ['', 'Untitled'])[1];
+  try {
+    const res = await apiRequest('/api/doc', 'POST', {
+      title,
+      content: editor.value,
+      theme: currentTheme
+    });
+    if (res.status === 409) {
+      btn.textContent = originalText;
+      btn.disabled = false;
+      openModal('upgradeModal');
+      return;
+    }
+    if (!res.ok) throw new Error('Save failed');
+    const data = await res.json();
+    currentSlug = data.slug;
+    showShareModal(data.url);
+    showToast('Saved to cloud');
+  } catch (e) {
+    showToast('Save failed — working offline');
+  } finally {
+    btn.textContent = originalText;
+    btn.disabled = false;
+  }
+}
+
+function showShareModal(url) {
+  document.getElementById('shareUrl').value = url;
+  const qr = document.getElementById('shareQR');
+  qr.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(url)}" alt="QR">`;
+  openModal('shareModal');
+}
+
+function copyShareUrl() {
+  const input = document.getElementById('shareUrl');
+  navigator.clipboard.writeText(input.value).then(() => showToast('URL copied'));
+}
+
+async function cloneCurrentDoc() {
+  if (!currentSlug) return;
+  try {
+    const res = await apiRequest(`/api/doc/${currentSlug}/clone`, 'POST');
+    if (!res.ok) throw new Error('Clone failed');
+    const data = await res.json();
+    currentSlug = data.slug;
+    closeModal('shareModal');
+    showShareModal(data.url);
+    showToast('Document cloned');
+  } catch (e) {
+    showToast('Clone failed');
+  }
+}
+
+async function openDocsModal() {
+  if (isOffline) { showToast('Offline mode — no docs available'); return; }
+  openModal('docsModal');
+  const list = document.getElementById('docList');
+  list.innerHTML = '<div style="color: var(--text-dim); font-size: 0.8rem; padding: 1rem 0;">Loading...</div>';
+  try {
+    const res = await apiRequest('/api/me/docs');
+    if (!res.ok) throw new Error('Failed to load');
+    const docs = await res.json();
+    if (!docs.length) {
+      list.innerHTML = '<div style="color: var(--text-dim); font-size: 0.8rem; padding: 1rem 0;">No documents yet.</div>';
+      return;
+    }
+    list.innerHTML = docs.map(d => `
+      <div class="doc-item" onclick="loadDoc('${d.slug}')">
+        <div>
+          <div class="doc-item-title">${escapeHtml(d.title || 'Untitled')}</div>
+          <div class="doc-item-meta">${fmtDate(d.created_at)} · ${d.view_count || 0} views</div>
+        </div>
+        <div class="doc-item-actions">
+          <button onclick="event.stopPropagation(); deleteDoc('${d.slug}')">Delete</button>
+        </div>
+      </div>
+    `).join('');
+  } catch (e) {
+    list.innerHTML = '<div style="color: var(--danger); font-size: 0.8rem; padding: 1rem 0;">Failed to load documents.</div>';
+  }
+}
+
+async function loadDoc(slug) {
+  try {
+    const res = await apiRequest(`/api/doc/${slug}`);
+    if (!res.ok) throw new Error('Load failed');
+    const data = await res.json();
+    editor.value = data.content;
+    currentSlug = data.slug || slug;
+    if (data.theme) {
+      document.getElementById('theme').value = data.theme;
+      changeTheme(data.theme);
+    }
+    updatePreview();
+    closeModal('docsModal');
+    showToast('Document loaded');
+  } catch (e) {
+    showToast('Failed to load document');
+  }
+}
+
+async function deleteDoc(slug) {
+  if (!confirm('Delete this document?')) return;
+  try {
+    const res = await apiRequest(`/api/doc/${slug}`, 'DELETE');
+    if (!res.ok) throw new Error('Delete failed');
+    openDocsModal();
+    showToast('Document deleted');
+  } catch (e) {
+    showToast('Delete failed');
+  }
+}
+
+async function startCheckout() {
+  const btn = document.getElementById('checkoutBtn');
+  const originalText = btn.textContent;
+  btn.textContent = 'Redirecting...';
+  btn.disabled = true;
+  try {
+    const res = await apiRequest('/api/checkout/session', 'POST', {});
+    if (!res.ok) throw new Error('Checkout failed');
+    const data = await res.json();
+    if (data.url) window.location.href = data.url;
+    else throw new Error('No checkout URL');
+  } catch (e) {
+    showToast('Checkout failed');
+    btn.textContent = originalText;
+    btn.disabled = false;
+  }
+}
+
+function openModal(id) { document.getElementById(id).classList.add('show'); }
+function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function fmtDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString();
+}
+
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) overlay.classList.remove('show');
+  });
+});
+
 // Resizer
 const resizer = document.getElementById('resizer');
 const editorPane = document.getElementById('editorPane');
@@ -1079,6 +1492,8 @@ function showPane(pane) {
 }
 
 // Init
+getApiKey();
+checkBackend();
 updatePreview();
 </script>
 </body>

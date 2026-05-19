@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Screenshot 3 — Popup</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1280px;
+  height: 800px;
+  background: #0f0f0f;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.popup {
+  width: 320px;
+  background: #050505;
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+.popup header {
+  background: #0a0a0a;
+  border-bottom: 1px solid #1a1a1a;
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.brand-dot {
+  width: 7px; height: 7px;
+  background: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #00ff88;
+}
+.brand-text {
+  font-family: 'SF Mono', Monaco, monospace;
+  font-weight: 700;
+  color: #00ff88;
+  font-size: 0.85rem;
+}
+section {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #1a1a1a;
+}
+.section-title {
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #888;
+  margin-bottom: 0.6rem;
+}
+button {
+  width: 100%;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.75rem;
+  padding: 0.5rem 0.8rem;
+  background: #111;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  color: #e0e0e0;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+button:last-child { margin-bottom: 0; }
+button.primary {
+  background: #00ff88;
+  color: #050505;
+  border-color: #00ff88;
+  font-weight: 600;
+  justify-content: center;
+}
+.recent-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.6rem;
+  background: #111;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  margin-bottom: 0.35rem;
+}
+.recent-item .title {
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.75rem;
+  color: #e0e0e0;
+}
+.recent-item .date {
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.65rem;
+  color: #888;
+}
+textarea {
+  width: 100%;
+  min-height: 80px;
+  background: #111;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  color: #e0e0e0;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.75rem;
+  padding: 0.6rem;
+  resize: vertical;
+  outline: none;
+}
+.quick-actions {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+.quick-actions button {
+  flex: 1;
+  justify-content: center;
+  margin-bottom: 0;
+}
+</style>
+</head>
+<body>
+<div class="popup">
+  <header>
+    <div class="brand-dot"></div>
+    <span class="brand-text">MARKUP</span>
+  </header>
+  <section>
+    <div class="section-title">Actions</div>
+    <button class="primary">+ New Document</button>
+    <button>Open Side Panel</button>
+  </section>
+  <section>
+    <div class="section-title">Recent Quick Notes</div>
+    <div class="recent-item">
+      <span class="title">Meeting notes from standup</span>
+      <span class="date">May 19</span>
+    </div>
+    <div class="recent-item">
+      <span class="title">API endpoint ideas</span>
+      <span class="date">May 18</span>
+    </div>
+    <div class="recent-item">
+      <span class="title">README draft for new project</span>
+      <span class="date">May 17</span>
+    </div>
+  </section>
+  <section>
+    <div class="section-title">Quick Note</div>
+    <textarea placeholder="Jot something down..."></textarea>
+    <div class="quick-actions">
+      <button class="primary">Save</button>
+      <button>Clear</button>
+    </div>
+  </section>
+</div>
+</body>
+</html>
